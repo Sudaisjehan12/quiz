@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+  
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Application</h1>
+        <form id="quizForm">
+            <label for="heading">Quiz Heading:</label>
+            <input type="text" id="heading" name="heading" required>
+
+            <label for="topic">Quiz Topic:</label>
+            <input type="text" id="topic" name="topic" required>
+
+            <div class="question">
+                <h2 class="h2">GENERAL MCQS QUIZ</h2>
+                <p>Question 1:</p>
+                <p>What is the capital of France?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="Paris" required> Paris</label>
+                    <label><input type="radio" name="q1" value="Berlin"> Berlin</label>
+                    <label><input type="radio" name="q1" value="London"> London</label>
+                    <label><input type="radio" name="q1" value="Rome"> Rome</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>Question 2:</p>
+                <p>What is the capital of Japan?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="Tokyo" required> Tokyo</label>
+                    <label><input type="radio" name="q2" value="Beijing"> Beijing</label>
+                    <label><input type="radio" name="q2" value="Seoul"> Seoul</label>
+                    <label><input type="radio" name="q2" value="Bangkok"> Bangkok</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>Question 3:</p>
+                <p>What is the capital of Brazil?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="Brasília" required> Brasília</label>
+                    <label><input type="radio" name="q3" value="Buenos Aires"> Buenos Aires</label>
+                    <label><input type="radio" name="q3" value="Lima"> Lima</label>
+                    <label><input type="radio" name="q3" value="Bogotá"> Bogotá</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>Question 4:</p>
+                <p>What is the capital of India?</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="New Delhi" required> New Delhi</label>
+                    <label><input type="radio" name="q4" value="Mumbai"> Mumbai</label>
+                    <label><input type="radio" name="q4" value="Kolkata"> Kolkata</label>
+                    <label><input type="radio" name="q4" value="Bangalore"> Bangalore</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>Question 5:</p>
+                <p>What is the capital of Australia?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="Canberra" required> Canberra</label>
+                    <label><input type="radio" name="q5" value="Sydney"> Sydney</label>
+                    <label><input type="radio" name="q5" value="Melbourne"> Melbourne</label>
+                    <label><input type="radio" name="q5" value="Perth"> Perth</label>
+                </div>
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background-color: #b2b2b2;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 50%;
+    }
+
+    h1 {
+        color: #000000;
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #000000;
+    }
+
+    input[type="text"], select {
+        width: calc(100% - 20px);
+        padding: 10px;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .question {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .options label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .options label input[type="radio"] {
+        margin-right: 10px;
+    }
+
+    input[type="submit"] {
+        background-color: #7a7a7a;
+        color: #2c2c2c;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #cecece;
+    }
+    .h2{
+        padding-top: 50px;
+        text-shadow: #ffffff;
+    }
+</style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("studentForm");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Validate form fields
+        if (validateForm()) {
+            const rollNo = document.getElementById("rollNo").value;
+            const name = document.getElementById("name").value;
+            const batch = document.getElementById("batch").value;
+            const section = document.getElementById("section").value;
+
+            // Create an object to hold the student data
+            const studentData = {
+                "rollNo": rollNo,
+                "name": name,
+                "batch": batch,
+                "section": section
+            };
+
+            // Convert student data object to JSON string
+            const jsonData = JSON.stringify(studentData);
+
+            // Store the JSON string in session storage
+            sessionStorage.setItem("studentData", jsonData);
+
+            // Provide feedback to the user
+            alert("Student data has been successfully stored in session storage.");
+
+            // Reset the form after submission
+            form.reset();
+        }
+    });
+
+    function validateForm() {
+        const rollNo = document.getElementById("rollNo").value.trim();
+        const name = document.getElementById("name").value.trim();
+        const batch = document.getElementById("batch").value;
+        const section = document.getElementById("section").value.trim();
+
+        if (rollNo === "" || name === "" || batch === "" || section === "") {
+            alert("All fields are required.");
+            return false;
+        }
+
+        // Add any additional validation logic here if needed
+
+        return true;
+    }
+});
+
+    </script>
+</html>
